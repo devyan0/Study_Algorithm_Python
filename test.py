@@ -1,28 +1,28 @@
-T = int(input())
+from collections import Counter
 
-DIRS = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
-for test_case in range(1, T + 1):
-    N = int(input())
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l = r = 0
+        res = 0
+        cnt = Counter()
 
-    grid = [[0 for _ in range(N)] for _ in range(N)]
-    i, j, val, head = 0, 0, 1, 0
+        while r < len(s):
+            in_ = s[r]
 
-    for _ in range(N ** 2):
-        grid[i][j] = val
-        val += 1
+            while cnt[in_] > 0:
+                out_ = s[l]
+                cnt[out_] -= 1
+                l += 1
 
-        di, dj = DIRS[head % 4]
-        ni, nj = i + di, j + dj
-        if not (0 <= ni < N and 0 <= nj < N) or grid[ni][nj]:
-            head += 1
-            di, dj = DIRS[head % 4]
-            ni, nj = i + di, j + dj
+            cnt[in_] += 1
+            r += 1
 
-        i, j = ni, nj
+            res = max(res, r - l)
 
-    print(f'#{test_case}')
-    for row in grid:
-        for e in row:
-            print(e, end=' ')
-        print()
+        return res
+
+
+sol = Solution()
+res = sol.lengthOfLongestSubstring("abcabcbb")
+print(res)
