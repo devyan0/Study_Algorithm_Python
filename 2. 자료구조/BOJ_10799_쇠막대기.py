@@ -1,6 +1,6 @@
 """
 문제 정보
-    https://www.acmicpc.net/problem/10799
+    https://www.acmicpc.net/problem/1918
     *
 
 작성
@@ -25,7 +25,3 @@ for x in seq:
     prev = x
 
 print(res)
-
-
-
-

@@ -1,32 +1,51 @@
-from time import time
-from collections import Counter
+"""
+A B
+A 2개 이상, B가 2개 이상
+길이는 4
 
-test_cases = list(range(10000)) * 100
-test_list = []
-test_counter = Counter()
+AAABAABBA
+AAAB      -> X
+ AABA     -> X
+  ABAA    -> X
+   BAAB   -> O
+    AABB  -> O
+     ABBA -> O
 
-# list pop test
-start = time()
-for t in test_cases:
-    test_list.append(t)
+"""
 
-print(f'List insertion : {time()-start:.2f} sec')
-start = time()
 
-for r in range(10000):
-    test_list.pop(r)
+seq = 'AAABAABBA'
+N = len(seq)
+d = {'A':0, 'B':0}
 
-print(f'List pop : {time() - start:.2f} sec')
-start = time()
+for c in seq[:4]:
+    d[c]+=1
 
-# dict test
-for t in test_cases:
-    test_counter[t] += 1
+print(d)
 
-print(f'Counter insertion : {time() - start:.2f} sec')
-start = time()
+def valid():
+    if d['A'] >=2 and d['B'] >=2:
+        return True
+    return False
 
-for r in range(10000):
-    test_counter.pop(r)
+# 현재 상태 [l, r)
+for i in range(N-4):
+    l = i
+    r = i+4
 
-print(f'Counter pop : {time() - start:.2f} sec')
+    if valid():
+        print(seq[l:r])
+
+    left_c = seq[l]     # out
+    right_c = seq[r]    # in
+
+
+# l = 0; r = 4
+# while r < N:
+#     if valid():
+#         print(seq[l:r])
+#
+#     l+=1
+#     r+=1
+
+
