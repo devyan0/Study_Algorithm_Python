@@ -1,6 +1,8 @@
 # Study_Algorithm_Python
 ## SSAFY 9기 18반 파이썬 알고리즘테스트 스터디
-
+### 푸는 중
+https://www.acmicpc.net/problem/2477
+<br><br>
 사용 언어 : 파이썬 <br>
 문제 출처 : 백준 <br>
 진행 방식 : 노션으로 기타 사항 공유 <br>

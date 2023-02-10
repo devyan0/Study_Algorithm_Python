@@ -7,15 +7,17 @@
     양승현
     2023 02 09
 """
+import time
+
 import sys
 input = sys.stdin.readline
 
 R, C = map(int, input().split())
 board = [[x for x in input()] for _ in range(R)]
 res = 0
-
 def bt(r, c, visited):
     global res
+
     res = max(res, len(visited))
 
     cur = board[r][c]
@@ -24,17 +26,25 @@ def bt(r, c, visited):
 
     res = max(res, len(visited))
 
-    for dr, dc in [(-1, 0), (1, 0), (0, 1), (0, -1)]:
+    for dr, dc in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
         nr, nc = r + dr, c + dc
         if not (0<=nr<R and 0<=nc<C): continue
+
+        # overhead here: O(len(visited) + len(cur))
+        # <= O(26 + 1) = O(1) but .. optimization required...
+        # hate this
         bt(nr, nc, visited | {cur})
 
+
+START = time.time()
 
 bt(0, 0, set())
 
 print(res)
 
-
+print(f'{(time.time()-START)*1000*1000*1000:.0f} ns')
+#
+#
 """
 20 20
 qwertyuioplkjhgfdsaz
@@ -90,4 +100,17 @@ qoeiwueoinmcfaslkfaaz
 zcxbz3xcb1xcb1z3x2cb
 tq87987yw9re8y7we98r
 54fa6sd4f56as4df6fff
+
+10 10
+IEFCJPOIDH
+FHFKCPOIDH
+FFALFPOIDH
+HFGCFPOIDH
+HMCHHPOIDH
+IEFCJPOIDH
+FHFKCPOIDH
+FFALFPOIDH
+HFGCFPOIDH
+HMCHHPOIDH
+
 """
