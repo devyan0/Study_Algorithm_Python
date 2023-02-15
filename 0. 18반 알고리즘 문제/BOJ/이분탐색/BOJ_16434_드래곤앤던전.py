@@ -17,7 +17,7 @@ def simulate(HP, atk=H_ATK):
     hp = HP
     for monster, m_atk, m_hp in info:
         if monster == 1:
-            hit = (ceil(m_hp / atk)-1)
+            hit = ceil(m_hp / atk)-1
             hp -= m_atk * hit
         else:
             atk += m_atk

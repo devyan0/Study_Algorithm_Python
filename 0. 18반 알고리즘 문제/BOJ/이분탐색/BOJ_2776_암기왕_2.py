@@ -2,7 +2,7 @@
 문제 정보
     https://www.acmicpc.net/problem/2776
     * binary search
-
+    라이브러리
 작성
     양승현
     2023 02 09
@@ -13,9 +13,10 @@ input = sys.stdin.readline
 
 T = int(input())
 for tc in range(1, T+1):
-    l1 = int(input()); note1 = [int(x) for x in input().split()]
-    l2 = int(input()); note2 = [int(x) for x in input().split()]
+    l1, note1 = int(input()), [int(x) for x in input().split()]
     note1.sort()
+
+    l2, note2 = int(input()), [int(x) for x in input().split()]
 
     def in_note1(x):
         i = bs(note1, x)

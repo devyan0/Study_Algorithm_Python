@@ -17,8 +17,7 @@ prev_cnt = lambda n: sum(filter(lambda k: 0 < k, [1 + (min(n, x[1])-x[0])//x[2] 
 l, r = 1, N+1
 while l < r:
     mid = (l+r) // 2
-    cnt = prev_cnt(mid)
-    if cnt >= D:
+    if prev_cnt(mid) >= D:
         r = mid
     else:
         l = mid + 1
