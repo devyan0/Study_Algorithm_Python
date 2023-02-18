@@ -6,7 +6,7 @@ arr = [int(x) for x in input().split()]
 
 valid = lambda cut: NEED <= sum([max(0, x-cut) for x in arr])
 
-l, r = 0, max(arr)
+l, r = 0, max(arr)+1
 while l < r:
     mid = (l+r) // 2
     if valid(mid):
@@ -14,7 +14,7 @@ while l < r:
     else:
         r = mid
 
-print(l-1 if l else 0)
+print(l-1)
 
 
 """
@@ -30,3 +30,4 @@ while l<r:
     else:r=m
 print(l-1)
 """
+

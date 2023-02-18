@@ -6,6 +6,7 @@ TP 문제
     오답 2: r = len(sols)-1 two pointer로 접근
     오답 3: res = [mix, -> res = [abs(mix) 실수
 """
+import bisect
 import sys
 input = sys.stdin.readline
 

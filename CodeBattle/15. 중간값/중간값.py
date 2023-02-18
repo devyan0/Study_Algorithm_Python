@@ -38,7 +38,7 @@ for tc in range(1, T+1):
     for _ in range(N):
         n1, n2 = map(int, input().split())
         tree.insert(n1, n2)
-        res += tree.mid % MOD
+        res = (res+tree.mid) % MOD
 
     print(f'#{tc} {res}')
 
