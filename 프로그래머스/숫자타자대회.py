@@ -21,35 +21,34 @@ def solution(numbers):
         if i == len(numbers):
             return temp
 
+        if (i, l, r) in memo and memo[(i, l, r)] < temp:
+            return memo[(i, l, r)]
+
+
         n = int(numbers[i])
-
-        if (n, l, r) in memo and memo[(n, l, r)] < temp:
-            return memo[(n, l, r)]
-
         d_l = dist[n][l]
         d_r = dist[n][r]
-
-        if l == n:
-            res = dp(i+1, n, r, temp + d_l)
-        elif r == n:
-            res = dp(i+1, l, n, temp + d_r)
+        if d_l < d_r:
+            res = dp(i+1, n, r, temp+d_l)
+        elif d_r < d_l:
+            res = dp(i+1, l, n, temp+d_r)
         else:
             res = min(
                 dp(i + 1, n, r, temp + d_l),
                 dp(i + 1, l, n, temp + d_r)
             )
 
-        memo[(n, l, r)] = res
+        memo[(i, l, r)] = res
         return res
 
     return dp(0, 4, 6, 0)
 
 
-# args = ["1756", "5123", "151506"]
-# sols = [10, 8, 15]
-# for a, s in zip(args, sols):
-#     res = solution(a)
-#     if res != s:
-#         print(f'result {res} differ from {s}')
-#
-# print('test finished')
+args = ["1756", "5123", "151506"]
+sols = [10, 8, 15]
+for a, s in zip(args, sols):
+    res = solution(a)
+    if res != s:
+        print(f'result {res} differ from {s}')
+
+print('test finished')
