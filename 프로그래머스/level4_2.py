@@ -7,12 +7,12 @@ def solution(*arg):
 
 args = [
     [["SOOOL", "XXXXO", "OOOOO", "OXXXX", "OOOOE"]],
-    [["LOOXS", "OOOOX", "OOOOO", "OOOOO", "EOOOO"]],
+    [["LOOXS", "OOOOX", "OOOOO", "OOOOO", "EOOOO"]]
 ]
 
 sols = [
     16,
-    -1,
+    -1
 ]
 
 for a, s in zip(args, sols):
