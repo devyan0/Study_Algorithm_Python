@@ -1,23 +1,26 @@
 from collections import defaultdict, deque
 
 def solution(n, paths, gates, summits):
+    summits.sort()
     d = defaultdict(lambda: defaultdict(int))
     for p in paths:
         n1, n2, w = p
         d[n1][n2] = w
         d[n2][n1] = w
 
-    def search(s, e, lim):
+    excld = set(summits)
+    gout = set(gates)
+
+    def search(s, lim):
         q = deque([s])
         vis = set()
-        exc = set(gates + summits)
         while q:
             node = q.popleft()
-            if node == e:
+            if node in gout:
                 return True
 
             # do not meet other gates or summits
-            elif node != s and node in exc: continue
+            elif node != s and node in excld: continue
 
             if node in vis: continue
             vis.add(node)
@@ -29,17 +32,10 @@ def solution(n, paths, gates, summits):
 
         return False
 
-    g_to_s = defaultdict(int)
-
     def valid(lim):
         for s in summits:
-            for g in gates:
-                if lim <= g_to_s[(g, s)]:
-                    continue
-                if search(g, s, lim):
-                    return s
-                else:
-                    g_to_s[(g, s)] = max(g_to_s[(g, s)], lim)
+            if search(s, lim):
+                return s
 
         return -1
 
