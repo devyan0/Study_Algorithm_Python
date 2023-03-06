@@ -1,9 +1,3 @@
-import sys
-
-sys.stdin = open('input.txt', 'r')
-
-input = sys.stdin.readline
-
 def get_pi(p):
     pi, j = [0] * len(p), 0
 
