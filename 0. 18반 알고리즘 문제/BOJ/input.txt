@@ -1,4 +1,7 @@
-3
-cat tree tcraete
-cat tree catrtee
-cat tree cttaree
+6
+65 281
+272 145
+233 175
+229 12
+99 88
+142 159
