@@ -1,20 +1,12 @@
-def dp(i, j):
-    global w1, w2, target
+from copy import deepcopy
 
-    if i == len(w1):
-        return w2[j:] == target[i+j:]
-    if j == len(w2):
-        return w1[i:] == target[i+j:]
+nums = [[1, 2], [3, 4]]
+cp1 = deepcopy(nums)
+cp2 = nums[:]
 
-    res = False
-    if w1[i] == target[i+j]:
-        res = res or dp(i+1, j)
+cp1[0][0] = -1
+print(f'{nums[0][0]=}')     # nums[0][0]=1
 
-    if w2[j] == target[i+j]:
-        res = res or dp(i, j+1)
+cp2[0][0] = -1
+print(f'{nums[0][0]=}')     # nums[0][0]=-1
 
-    return res
-
-for tc in range(1, int(input())+1):
-    w1, w2, target = input().split()
-    print(f'Data set {tc}: {"yes" if dp(0, 0) else "no"}')
