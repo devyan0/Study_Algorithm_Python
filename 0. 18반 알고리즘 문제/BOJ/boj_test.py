@@ -1,22 +1,32 @@
 import sys
 sys.stdin = open('input.txt', 'r')
 
-n = int(input())
+import sys
+from collections import defaultdict, deque
 
-def dfs(s, idx):
-    if idx == n:
-        print(s)
-        exit(0)
+sys.setrecursionlimit(100_000)
+input = sys.stdin.readline
 
-    for i in range(1, 4):
-        if isGood(s + str(i)):
-            dfs(s+str(i), idx+1)
+N, M = map(int, input().split())
+graph = defaultdict(set)
+indegree = defaultdict(int)
 
-def isGood(s):
-    for i in range(1, len(s)//2+1):
-        if s[len(s)-i:] == s[len(s)-2*i:len(s)-i]:
-            return False
-    return True
+for _ in range(M):
+    a, b = map(int, input().split())
+    graph[a].add(b)
+    indegree[b] += 1
 
+q = deque([i for i in range(1, N + 1) if indegree[i] == 0])
 
-dfs('', 0)
+depth = {i: 0 for i in range(1, N + 1)}
+
+while q:
+    node = q.popleft()
+    for child in graph[node]:
+        depth[child] = max(depth[child], depth[node] + 1)
+        indegree[child] -= 1
+        if indegree[child] == 0:
+            q.append(child)
+
+max_value = max(depth.values())
+print(*sorted([i for i in depth if depth[i] == max_value]))
