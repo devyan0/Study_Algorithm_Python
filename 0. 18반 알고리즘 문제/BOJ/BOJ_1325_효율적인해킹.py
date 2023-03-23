@@ -1,16 +1,20 @@
+"""
+falied
+
+"""
 import sys
 sys.stdin = open('input.txt', 'r')
 
 import sys
-sys.setrecursionlimit(100_000)
 input = sys.stdin.readline
+from collections import defaultdict
 
 N, M = map(int, input().split())
-graph = {}
+graph = defaultdict(list)
 
 for _ in range(M):
     a, b = map(int, input().split())
-    graph.setdefault(b, set()).add(a)
+    graph[b].append(a)
 
 memo = {}
 def cover_num(node, path):
