@@ -1,5 +1,6 @@
 import sys
 sys.stdin = open('input.txt', 'r')
+
 """
 DP approach
 """
@@ -11,13 +12,13 @@ sys.setrecursionlimit(N*M)
 
 board = [list(input()) for _ in range(N)]
 memo = [[-2 for _ in range(M)] for _ in range(N)]   # -2: undetermined, -1: finding, 0: False, 1: True
-out_of_bound = lambda i, j: not (0<=i<N) or not (0<=j<M)
+out_of_bound = lambda i, j: not (0 <= i < N) or not (0 <= j < M)
 
 
 def dp(i, j):
-    if 0 <= memo[i][j]:
+    if 0 <= memo[i][j]:     # dp(i, j) is already calculated
         return memo[i][j]
-    if memo[i][j] == -1:
+    if memo[i][j] == -1:    # dp(i, j) is being calculated
         memo[i][j] = 0
         return memo[i][j]
 

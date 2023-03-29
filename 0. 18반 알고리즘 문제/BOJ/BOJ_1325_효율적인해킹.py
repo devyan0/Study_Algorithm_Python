@@ -18,7 +18,7 @@ for _ in range(M):
 
 memo = {}
 def cover_num(node, path):
-    if node in memo: return memo[node]
+    if node in memo: return memo[node ]
     if node not in graph:
         return 1
     if node in path:
